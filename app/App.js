@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,13 +16,17 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+      <View style={styles.statusGutter} />
+        <View style={styles.title}>
+          <Text style={styles.titleText}>dutch</Text>
+        </View>
+        <View style={styles.content}>
+          <Text>Split expenses amongst friends.</Text>
+        </View>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );
@@ -35,15 +39,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+   
   },
-  welcome: {
+  statusGutter: {
+    height: 20,
+    backgroundColor: 'rgba( 0, 0, 0, 0.8)',
+    width: '100%',
+  },
+  title: {
+    height: 45,
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    justifyContent: 'center',
+    width: '100%',
+    backgroundColor: 'rgba( 255, 255, 255, 0.8)'
   },
-  instructions: {
+  titleText: {
+    textAlign: 'center'
+  },
+  content: {
+    flex: 2,
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
+    backgroundColor: 'red',
+    height: '100%',
+    width: '100%'
   },
 });
