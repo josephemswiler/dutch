@@ -11,12 +11,20 @@ export default class App extends Component {
       <LinearGradient style={styles.container} colors={['#F15F79', '#B24592']}>
         <View style={styles.statusGutter} />
         <View style={styles.title}>
-          <Text style={styles.titleText}>dutch</Text>
+          <View style={styles.titleIconLeft}>
+            <Icon name="navicon" size={26} color="#000000" /> 
+          </View>
+          <View style={styles.titleLogo}>
+            <Image style={styles.logo} source={require('./assets/images/logo.png')} alt="logo" />
+          </View>
+          <View style={styles.titleIconRight}>
+            <Icon name="plus" size={26} color="#000000" /> 
+          </View>
         </View>
           <View style={styles.content}>
             <View style={styles.card}>
               <View style={styles.upperCard}>
-                <Image style={styles.profileImage} source={require('./assets/images/p1.jpg')} />
+                <Image style={styles.profileImage} source={require('./assets/images/p1.jpg')} alt="profile image" />
                 <View style={styles.upperCardText}>
                       <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
                       <View style={styles.detailRow}>
@@ -68,13 +76,34 @@ const styles = StyleSheet.create({
   title: {
     height: 45,
     fontSize: 20,
+    flexDirection: 'row',
     textAlign: 'center',
     justifyContent: 'center',
     width: '100%',
     backgroundColor: 'rgba( 255, 255, 255, 0.8)'
   },
-  titleText: {
-    textAlign: 'center'
+  titleLogo: {
+    textAlign: 'center',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    textAlign: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    height: 15,
+    width: 65,
+  },
+  titleIconLeft: {
+    textAlign: 'left',
+    marginRight: 'auto',
+    justifyContent: 'center',
+    paddingLeft: 20,
+  },
+  titleIconRight: {
+    textAlign: 'right',
+    marginLeft: 'auto',
+    justifyContent: 'center',
+    paddingRight: 20,
   },
   content: {
     flex: 2,
