@@ -38,10 +38,8 @@ export default class Card extends Component {
         if (element === 'lower') {
             element = 'user'
         }
-
-        let targetIdx = parseInt(optionsClone.map( (item, idx) => item.name === element ? idx : null).join(''))
         
-        optionsClone[targetIdx] = { name: 'close-o', color: '#FF5E57' }
+        optionsClone[parseInt(optionsClone.map( (item, idx) => item.name === element ? idx : null).join(''))] = { name: 'close-o', color: '#FF5E57' }
 
         this.setState({
             lowerCardHeight: 100,
