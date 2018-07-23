@@ -7,91 +7,43 @@ export default class Card extends Component {
   render() {
     return (
         <View style={styles.card}>
-        <View style={styles.upperCard}>
-          <Image style={styles.profileImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
-          <View style={styles.upperCardText}>
-            <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
-              <View style={styles.detailRow}>
-                <View style={styles.detailIcon}>
-                  <Icon name="location" size={26} color="#000000" /> 
-                </View>
-                <View style={styles.locationText}>
-                  <Text style={styles.cardDetails}>Torchy's Tacos</Text>
-                </View>
-              </View>
-              <View style={styles.detailRow}>
-                <View style={styles.detailIcon}>
-                  <Icon name="calendar" size={26} color="#000000" /> 
-                </View>
-                <View style={styles.dateText}>
-                  <Text style={styles.cardDetails}>06/27/2018</Text>
-                </View>
-              </View>
-            </View> 
-          </View>
-        <View style={styles.iconRow}>
-          <Icon style={styles.otherIcon} name="paperclip" size={26} color="#000000" /> 
-          <Icon style={styles.otherIcon} name="comment" size={26} color="#000000" /> 
-          <Icon style={styles.otherIcon} name="user" size={26} color="#000000" /> 
+            <View style={styles.upperCard}>
+                <Image style={styles.profileImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                <View style={styles.upperCardText}>
+                    <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
+                    <View style={styles.detailRow}>
+                        <View style={styles.detailIcon}>
+                            <Icon name="location" size={26} color="#000000" /> 
+                        </View>
+                        <View style={styles.locationText}>
+                            <Text style={styles.cardDetails}>Torchy's Tacos</Text>
+                        </View>
+                    </View>
+                    <View style={styles.detailRow}>
+                        <View style={styles.detailIcon}>
+                            <Icon name="calendar" size={26} color="#000000" /> 
+                        </View>
+                        <View style={styles.dateText}>
+                            <Text style={styles.cardDetails}>06/27/2018</Text>
+                        </View>
+                    </View>
+                </View> 
+            </View>
+            <View style={styles.iconRow}>
+                <Icon style={styles.otherIcon} name="paperclip" size={26} color="#000000" /> 
+                <Icon style={styles.otherIcon} name="comment" size={26} color="#000000" /> 
+                <Icon style={styles.otherIcon} name="user" size={26} color="#000000" /> 
+            </View>
+            <View style={styles.lowerCard}>
+                <Text style={styles.cardFooterLeft}>You received</Text>
+                <Text style={styles.cardFooterRight}>$140.00</Text>
+            </View>
         </View>
-      <View style={styles.lowerCard}>
-        <Text style={styles.cardFooterLeft}>You received</Text>
-        <Text style={styles.cardFooterRight}>$140.00</Text>
-      </View>
-    </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    statusGutter: {
-      height: 20,
-      backgroundColor: 'rgba( 255, 255, 255, 1)',
-      width: '100%',
-    },
-    title: {
-      height: 45,
-      fontSize: 20,
-      flexDirection: 'row',
-      textAlign: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      backgroundColor: 'rgba( 255, 255, 255, 1)'
-    },
-    titleLogo: {
-      textAlign: 'center',
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      textAlign: 'center',
-      justifyContent: 'center',
-    },
-    logo: {
-      height: 15,
-      width: 65,
-    },
-    titleIconLeft: {
-      textAlign: 'left',
-      marginRight: 'auto',
-      justifyContent: 'center',
-      paddingLeft: 20,
-    },
-    titleIconRight: {
-      textAlign: 'right',
-      marginLeft: 'auto',
-      justifyContent: 'center',
-      paddingRight: 20,
-    },
-    content: {
-      flex: 2,
-      textAlign: 'center',
-      width: '100%',
-      padding: 20,
-    },
     card: {
       textAlign: 'center',
       color: '#333333',
@@ -100,7 +52,8 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.5,
       shadowRadius: 5,
       shadowColor: 'black',
-      shadowOffset: { height: 5, width: 5 }
+      shadowOffset: { height: 5, width: 5 },
+      marginBottom: 20,
     },
     upperCard: {
       padding: 15,

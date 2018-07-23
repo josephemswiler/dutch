@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, ScrollView} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Card from './src/components/Card'
 import TopBar from './src/components/TopBar'
@@ -8,11 +8,17 @@ export default class App extends Component {
   render() {
     return (
       <LinearGradient style={styles.container} colors={['#F15F79', '#B24592']}>
-        <View style={styles.statusGutter} />
-        <TopBar />
-        <View style={styles.content}>
-          <Card />
-        </View>
+        <ScrollView>
+          <View style={styles.statusGutter} />
+          <TopBar />
+          <View style={styles.content}>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </View>
+        </ScrollView>
       </LinearGradient>
     )
   }

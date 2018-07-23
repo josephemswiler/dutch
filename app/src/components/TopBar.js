@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { AppRegistry, StyleSheet, Text, View ,Image } from 'react-native'
-import { Fonts } from '../utils/Fonts'
 import Icon from 'react-native-vector-icons/EvilIcons'
 
 export default class TopBar extends Component {
@@ -22,16 +21,6 @@ export default class TopBar extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    statusGutter: {
-      height: 20,
-      backgroundColor: 'rgba( 255, 255, 255, 1)',
-      width: '100%',
-    },
     title: {
       height: 45,
       fontSize: 20,
@@ -63,86 +52,6 @@ const styles = StyleSheet.create({
       marginLeft: 'auto',
       justifyContent: 'center',
       paddingRight: 20,
-    },
-    content: {
-      flex: 2,
-      textAlign: 'center',
-      width: '100%',
-      padding: 20,
-    },
-    card: {
-      textAlign: 'center',
-      color: '#333333',
-      backgroundColor: 'rgba( 255, 255, 255, 1)',
-      borderRadius: 5,
-      shadowOpacity: 0.5,
-      shadowRadius: 5,
-      shadowColor: 'black',
-      shadowOffset: { height: 5, width: 5 }
-    },
-    upperCard: {
-      padding: 15,
-      paddingBottom: 0,
-      flexDirection: 'row',
-      alignItems: 'center'
-    },
-    profileImage: {
-      width: 60,
-      height: 60,
-      borderRadius: 30
-    },
-    upperCardText: {
-      marginLeft: 15,
-    },
-    cardTitle: {
-      fontSize: 20,
-      fontFamily: Fonts.WorkSansRegular
-    },
-    detailRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginTop: 2,
-    },
-    cardDetails: {
-      fontSize: 12,
-      fontFamily: Fonts.WorkSansRegular,
-      paddingBottom: 2,
-      paddingLeft: 2
-    },
-    iconRow: {
-      textAlign: 'right',
-      padding: 8,
-      marginLeft: 'auto',
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    otherIcon: {
-      padding: 4,
-    },
-    lowerCard: {
-      backgroundColor: '#485460',
-      padding: 6,
-      width: '100%',
-      borderRadius: 5,
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    cardFooterLeft: {
-      color: '#ffffff',
-      paddingLeft: 9,
-      fontSize: 12,
-      fontFamily: Fonts.WorkSansRegular,
-    },
-    cardFooterRight: {
-      color: '#0BE881',
-      textAlign: 'right',
-      paddingRight: 9,
-      fontSize: 20,
-      fontFamily: Fonts.WorkSansBold,
-      marginLeft: 'auto',
     }
   })  
 
