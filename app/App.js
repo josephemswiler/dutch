@@ -37,6 +37,11 @@ export default class App extends Component {
                       </View>
                   </View> 
                 </View>
+                <View style={styles.iconRow}>
+                  <Icon style={styles.otherIcon} name="paperclip" size={26} color="#000000" /> 
+                  <Icon style={styles.otherIcon} name="comment" size={26} color="#000000" /> 
+                  <Icon style={styles.otherIcon} name="user" size={26} color="#000000" /> 
+                </View>
               <View style={styles.lowerCard}>
               <Text style={styles.cardFooterLeft}>You received</Text>
               <Text style={styles.cardFooterRight}>$140.00</Text>
@@ -87,9 +92,9 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { height: 5, width: 5 }
   },
-  
   upperCard: {
     padding: 15,
+    paddingBottom: 0,
     flexDirection: 'row',
     alignItems: 'center'
   },
@@ -115,6 +120,16 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.WorkSansRegular,
     paddingBottom: 2,
     paddingLeft: 2
+  },
+  iconRow: {
+    textAlign: 'right',
+    padding: 8,
+    marginLeft: 'auto',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  otherIcon: {
+    padding: 4,
   },
   lowerCard: {
     backgroundColor: '#485460',
