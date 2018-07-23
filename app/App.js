@@ -78,12 +78,16 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   card: {
-
     textAlign: 'center',
     color: '#333333',
     backgroundColor: 'rgba( 255, 255, 255, 0.8)',
     borderRadius: 5,
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    shadowColor: 'black',
+    shadowOffset: { height: 5, width: 5 }
   },
+  
   upperCard: {
     padding: 15,
     flexDirection: 'row',
