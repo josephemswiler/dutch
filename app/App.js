@@ -21,43 +21,42 @@ export default class App extends Component {
             <Icon name="plus" size={26} color="#000000" /> 
           </View>
         </View>
-          <View style={styles.content}>
-            <View style={styles.card}>
-              <View style={styles.upperCard}>
-                <Image style={styles.profileImage} source={require('./assets/images/p1.jpg')} alt="profile image" />
-                <View style={styles.upperCardText}>
-                      <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
-                      <View style={styles.detailRow}>
-                        <View style={styles.detailIcon}>
-                          <Icon name="location" size={26} color="#000000" /> 
-                        </View>
-                        <View style={styles.locationText}>
-                          <Text style={styles.cardDetails}>Torchy's Tacos</Text>
-                        </View>
-                      </View>
-                      <View style={styles.detailRow}>
-                        <View style={styles.detailIcon}>
-                          <Icon name="calendar" size={26} color="#000000" /> 
-                        </View>
-                        <View style={styles.dateText}>
-                          <Text style={styles.cardDetails}>06/27/2018</Text>
-                        </View>
-                      </View>
-                  </View> 
-                </View>
-                <View style={styles.iconRow}>
-                  <Icon style={styles.otherIcon} name="paperclip" size={26} color="#000000" /> 
-                  <Icon style={styles.otherIcon} name="comment" size={26} color="#000000" /> 
-                  <Icon style={styles.otherIcon} name="user" size={26} color="#000000" /> 
-                </View>
-              <View style={styles.lowerCard}>
-              <Text style={styles.cardFooterLeft}>You received</Text>
-              <Text style={styles.cardFooterRight}>$140.00</Text>
+        <View style={styles.content}>
+          <View style={styles.card}>
+            <View style={styles.upperCard}>
+              <Image style={styles.profileImage} source={require('./assets/images/p1.jpg')} alt="profile image" />
+              <View style={styles.upperCardText}>
+                <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
+                  <View style={styles.detailRow}>
+                    <View style={styles.detailIcon}>
+                      <Icon name="location" size={26} color="#000000" /> 
+                    </View>
+                    <View style={styles.locationText}>
+                      <Text style={styles.cardDetails}>Torchy's Tacos</Text>
+                    </View>
+                  </View>
+                  <View style={styles.detailRow}>
+                    <View style={styles.detailIcon}>
+                      <Icon name="calendar" size={26} color="#000000" /> 
+                    </View>
+                    <View style={styles.dateText}>
+                      <Text style={styles.cardDetails}>06/27/2018</Text>
+                    </View>
+                  </View>
+                </View> 
               </View>
+            <View style={styles.iconRow}>
+              <Icon style={styles.otherIcon} name="paperclip" size={26} color="#000000" /> 
+              <Icon style={styles.otherIcon} name="comment" size={26} color="#000000" /> 
+              <Icon style={styles.otherIcon} name="user" size={26} color="#000000" /> 
             </View>
+          <View style={styles.lowerCard}>
+            <Text style={styles.cardFooterLeft}>You received</Text>
+            <Text style={styles.cardFooterRight}>$140.00</Text>
           </View>
-      </LinearGradient>
-      
+        </View>
+      </View>
+    </LinearGradient>
     )
   }
 }
