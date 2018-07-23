@@ -1,10 +1,18 @@
 import React, {Component} from 'react'
-import {StyleSheet, View, ScrollView} from 'react-native'
+import {StyleSheet, View, ScrollView, Alert} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Card from './src/components/Card'
 import TopBar from './src/components/TopBar'
 
 export default class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+
+    }
+  }
+
   render() {
     return (
       <LinearGradient style={styles.container} colors={['#F15F79', '#B24592']}>
@@ -12,8 +20,7 @@ export default class App extends Component {
           <View style={styles.statusGutter} />
           <TopBar />
           <View style={styles.content}>
-            <Card />
-            <Card />
+            <Card />   
             <Card />
             <Card />
             <Card />
