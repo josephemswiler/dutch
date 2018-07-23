@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {StyleSheet, Text, View ,Image} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Fonts } from './src/utils/Fonts'
+import Icon from 'react-native-vector-icons/EvilIcons'
 
 export default class App extends Component {
   render() {
@@ -17,11 +18,25 @@ export default class App extends Component {
               <View style={styles.upperCard}>
                 <Image style={styles.profileImage} source={require('./assets/images/p1.jpg')} />
                 <View style={styles.upperCardText}>
-                  <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
-                  <Text style={styles.cardDetails}>Torchy's Tacos</Text>
-                  <Text style={styles.cardDetails}>06/27/2018</Text>
+                      <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
+                      <View style={styles.detailRow}>
+                        <View style={styles.detailIcon}>
+                          <Icon name="location" size={26} color="#000000" /> 
+                        </View>
+                        <View style={styles.locationText}>
+                          <Text style={styles.cardDetails}>Torchy's Tacos</Text>
+                        </View>
+                      </View>
+                      <View style={styles.detailRow}>
+                        <View style={styles.detailIcon}>
+                          <Icon name="calendar" size={26} color="#000000" /> 
+                        </View>
+                        <View style={styles.dateText}>
+                          <Text style={styles.cardDetails}>06/27/2018</Text>
+                        </View>
+                      </View>
+                  </View> 
                 </View>
-              </View>
               <View style={styles.lowerCard}>
               <Text style={styles.cardFooterLeft}>You received</Text>
               <Text style={styles.cardFooterRight}>$140.00</Text>
@@ -63,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   card: {
-    height: 100,
+
     textAlign: 'center',
     color: '#333333',
     backgroundColor: 'rgba( 255, 255, 255, 0.8)',
@@ -72,7 +87,6 @@ const styles = StyleSheet.create({
   upperCard: {
     padding: 15,
     flexDirection: 'row',
-
     alignItems: 'center'
   },
   profileImage: {
@@ -81,16 +95,22 @@ const styles = StyleSheet.create({
     borderRadius: 30
   },
   upperCardText: {
-    marginLeft: 15
+    marginLeft: 15,
   },
   cardTitle: {
     fontSize: 20,
     fontFamily: Fonts.WorkSansRegular
   },
+  detailRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 2,
+  },
   cardDetails: {
     fontSize: 12,
     fontFamily: Fonts.WorkSansRegular,
-    marginTop: 2
+    paddingBottom: 2,
+    paddingLeft: 2
   },
   lowerCard: {
     backgroundColor: '#485460',
