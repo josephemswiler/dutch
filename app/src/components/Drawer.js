@@ -13,6 +13,15 @@ export default class Drawer extends Component {
         }
     }
 
+    postChat(newPost) {
+        let post = {
+            image: '../../assets/images/p1.jpg',
+            name: 'Joe',
+            date: '1d',
+            message: `Hell y'all! This looks great! Yeehaw! Let's do this again sometime!`
+        }
+    }
+
     makeDrawer() {
 
         switch (this.props.selection) {
@@ -26,30 +35,33 @@ export default class Drawer extends Component {
             )
             case 'comment':
             return (
-                <ScrollView>
-                    <View style={styles.chatView}>
-                        <View style={styles.chatRow}>
-                            <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
-                            <View style={styles.chatStatus}>
-                                <Text style={styles.chatName}>Joe</Text>
-                                <Text style={styles.chatDate}>1d</Text>
+                <View style={styles.topChatWrapper}>
+                    <ScrollView>
+                        <View style={styles.chatView}>
+                            <View style={styles.chatRow}>
+                                <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                                <View style={styles.chatStatus}>
+                                    <Text style={styles.chatName}>Joe</Text>
+                                    <Text style={styles.chatDate}>1d</Text>
+                                </View>
+                                <View style={styles.chatMessageWrapper}>
+                                    <Text style={styles.chatMessage}>Hell y'all! This looks great! Yeehaw! Let's do this again sometime!</Text>
+                                </View>
                             </View>
-                            <View style={styles.chatMessageWrapper}>
-                                <Text style={styles.chatMessage}>Hell y'all! This looks great! Yeehaw! Let's do this again sometime!</Text>
+                            <View style={styles.chatRow}>
+                                <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                                <View style={styles.chatStatus}>
+                                    <Text style={styles.chatName}>Joe</Text>
+                                    <Text style={styles.chatDate}>1d</Text>
+                                </View>
+                                <View style={styles.chatMessageWrapper}>
+                                    <Text style={styles.chatMessage}>yesssssyesssssyesssssyesssssyesssssyesssssyesssssyesssss</Text>
+                                </View>
                             </View>
                         </View>
-                        <View style={styles.chatRow}>
-                            <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
-                            <View style={styles.chatStatus}>
-                                <Text style={styles.chatName}>Joe</Text>
-                                <Text style={styles.chatDate}>1d</Text>
-                            </View>
-                            <View style={styles.chatMessageWrapper}>
-                                <Text style={styles.chatMessage}>yesssssyesssssyesssssyesssssyesssssyesssssyesssssyesssss</Text>
-                            </View>
-                        </View>
-                    </View>
-                </ScrollView>
+                    </ScrollView>
+                    <ChatInput postChat={this.postChat} />
+                </View>
             )
             case 'user':
             return (
@@ -103,6 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#485460',
         padding: 6,
         paddingLeft: 15,
+        paddingRight: 15,
         width: '100%',
         height: '100%',
         flexDirection: 'row',
@@ -115,6 +128,11 @@ const styles = StyleSheet.create({
     },
     receipt: {
         width: '100%',
+    },
+    topChatWrapper: {
+        flexDirection: 'column',
+        alignSelf: 'flex-start',
+        width: '100%'
     },
     chatView: {
         flexDirection: 'column',
