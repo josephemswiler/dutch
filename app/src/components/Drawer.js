@@ -9,7 +9,21 @@ export default class Drawer extends Component {
         super(props) 
 
         this.state={
-          selection: this.props.selection
+          selection: this.props.selection,
+          messages: [
+            {
+                image: require('../../assets/images/p1.jpg'),
+                name: 'Joe',
+                date: '1d',
+                message: `Hell y'all! This looks great! Yeehaw! Let's do this again sometime!`
+            },
+            {
+                image: require('../../assets/images/p1.jpg'),
+                name: 'Joe',
+                date: '8h',
+                message: `yesssssyesssssyesssssyesssssyesssssyesssssyesssssyesssss`
+            }
+          ]
         }
     }
 
@@ -34,30 +48,25 @@ export default class Drawer extends Component {
                 </ScrollView>
             )
             case 'comment':
+            
             return (
                 <View style={styles.topChatWrapper}>
                     <ScrollView>
                         <View style={styles.chatView}>
-                            <View style={styles.chatRow}>
-                                <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
-                                <View style={styles.chatStatus}>
-                                    <Text style={styles.chatName}>Joe</Text>
-                                    <Text style={styles.chatDate}>1d</Text>
+                        {this.state.messages.map( (item, idx) => {
+                            return (
+                                <View style={styles.chatRow} key={idx}>
+                                    <Image style={styles.chatImage} source={ item.image } alt="profile image" />
+                                    <View style={styles.chatStatus}>
+                                        <Text style={styles.chatName}>{item.name}</Text>
+                                        <Text style={styles.chatDate}>{item.date}</Text>
+                                    </View>
+                                    <View style={styles.chatMessageWrapper}>
+                                        <Text style={styles.chatMessage}>{item.message}</Text>
+                                    </View>
                                 </View>
-                                <View style={styles.chatMessageWrapper}>
-                                    <Text style={styles.chatMessage}>Hell y'all! This looks great! Yeehaw! Let's do this again sometime!</Text>
-                                </View>
-                            </View>
-                            <View style={styles.chatRow}>
-                                <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
-                                <View style={styles.chatStatus}>
-                                    <Text style={styles.chatName}>Joe</Text>
-                                    <Text style={styles.chatDate}>1d</Text>
-                                </View>
-                                <View style={styles.chatMessageWrapper}>
-                                    <Text style={styles.chatMessage}>yesssssyesssssyesssssyesssssyesssssyesssssyesssssyesssss</Text>
-                                </View>
-                            </View>
+                            )
+                        })}
                         </View>
                     </ScrollView>
                     <ChatInput postChat={this.postChat} />
@@ -119,17 +128,18 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flexDirection: 'row',
-        alignItems: 'flex-start',
+        alignItems: 'flex-start'
     },
     receiptImage: {
         padding: 6,
         width: '100%',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     receipt: {
-        width: '100%',
+        width: '100%'
     },
     topChatWrapper: {
+        paddingTop: 10,
         flexDirection: 'column',
         alignSelf: 'flex-start',
         width: '100%'
@@ -150,22 +160,22 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 15,
-        top: 0,
+        top: 0
     },
     chatStatus: {
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     chatName: {
         color: '#4BCFFA',
         fontSize: 12,
         fontFamily: Fonts.WorkSansRegular,
-        marginLeft: 5,
+        marginLeft: 5
     },
     chatDate: {
         color: '#ffffff',
         fontSize: 12,
         fontFamily: Fonts.WorkSansRegular,
-        marginLeft: 5,
+        marginLeft: 5
     },
     chatMessageWrapper: {
         flexDirection: 'row',
@@ -198,7 +208,7 @@ const styles = StyleSheet.create({
         left: 0,
         height: '75%',
         width: '100%',
-        backgroundColor: 'white',
+        backgroundColor: '#ffffff'
       },
       innerCard: {
         textAlign: 'center',
@@ -254,7 +264,7 @@ const styles = StyleSheet.create({
       cardFooterCenter: {
         color: '#ffffff',
         fontSize: 16,
-        fontFamily: Fonts.WorkSansRegular,
+        fontFamily: Fonts.WorkSansRegular
       }
 })  
 

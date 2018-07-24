@@ -38,20 +38,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         fontFamily: Fonts.WorkSansRegular,
         borderRadius: 30,
-        flexDirection: 'row',
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        shadowColor: 'black',
-        shadowOffset: { height: 5, width: 5 }
+        flexDirection: 'row'
     },
     inputText: {
         padding: 4,
-        paddingLeft: 15,
+        paddingLeft: 15
     },
     postButtonWrapper: {
         marginLeft: 'auto',
         textAlign: 'right',
-        paddingRight: 11,
+        paddingRight: 11
     }
 })
 
