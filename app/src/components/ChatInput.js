@@ -12,7 +12,7 @@ export default class ChatInput extends Component {
       <View style={{padding: 10, width: '100%'}}>
         <TextInput
           style={{height: 40}}
-          placeholder="Type here to translate!"
+          placeholder="Say something..."
           onChangeText={(text) => this.setState({text})}
         />
       </View>
