@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { AppRegistry, StyleSheet, Text, View, Image, TouchableHighlight, Animated, Alert, ScrollView } from 'react-native'
 import { Fonts } from '../utils/Fonts'
 import Icon from 'react-native-vector-icons/EvilIcons'
+import ChatInput from './ChatInput'
 
 export default class Drawer extends Component {
     constructor (props) {
@@ -20,7 +21,6 @@ export default class Drawer extends Component {
                 <ScrollView>
                     <View style={styles.receiptImage}>
                         <Image style={styles.receipt}  source={require('../../assets/images/receipt.png')} alt="receipt image" />
-                        <Text style={styles.profileName}>Joe</Text>
                     </View>
                 </ScrollView>
             )
@@ -28,7 +28,26 @@ export default class Drawer extends Component {
             return (
                 <ScrollView>
                     <View style={styles.chatView}>
-                        <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                        <View style={styles.chatRow}>
+                            <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                            <View style={styles.chatStatus}>
+                                <Text style={styles.chatName}>Joe</Text>
+                                <Text style={styles.chatDate}>1d</Text>
+                            </View>
+                            <View style={styles.chatMessageWrapper}>
+                                <Text style={styles.chatMessage}>Hell y'all! This looks great! Yeehaw! Let's do this again sometime!</Text>
+                            </View>
+                        </View>
+                        <View style={styles.chatRow}>
+                            <Image style={styles.chatImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                            <View style={styles.chatStatus}>
+                                <Text style={styles.chatName}>Joe</Text>
+                                <Text style={styles.chatDate}>1d</Text>
+                            </View>
+                            <View style={styles.chatMessageWrapper}>
+                                <Text style={styles.chatMessage}>yesssssyesssssyesssssyesssssyesssssyesssssyesssssyesssss</Text>
+                            </View>
+                        </View>
                     </View>
                 </ScrollView>
             )
@@ -87,7 +106,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
     receiptImage: {
         padding: 6,
@@ -99,13 +118,50 @@ const styles = StyleSheet.create({
     },
     chatView: {
         flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
+        alignSelf: 'flex-start'
     },
+    chatRow: {
+        flexDirection: 'row',
+        alignSelf: 'flex-start',
+        alignItems: 'center',
+        marginBottom: 10,
+        flex: 1,
+        flexWrap: 'wrap'
+      },
     chatImage: {
         width: 30,
         height: 30,
         borderRadius: 15,
+        top: 0,
+    },
+    chatStatus: {
+        flexDirection: 'column',
+    },
+    chatName: {
+        color: '#4BCFFA',
+        fontSize: 12,
+        fontFamily: Fonts.WorkSansRegular,
+        marginLeft: 5,
+    },
+    chatDate: {
+        color: '#ffffff',
+        fontSize: 12,
+        fontFamily: Fonts.WorkSansRegular,
+        marginLeft: 5,
+    },
+    chatMessageWrapper: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        width: 0,
+        flexGrow: 1
+    },
+    chatMessage: {
+        color: '#ffffff',
+        fontSize: 12,
+        fontFamily: Fonts.WorkSansRegular,
+        alignSelf: 'flex-start',
+        paddingLeft: 10,
+        flexWrap: 'wrap'
     },
     card: {
         textAlign: 'center',
