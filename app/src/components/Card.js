@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { AppRegistry, StyleSheet, Text, View, Image, TouchableHighlight, Animated, Alert } from 'react-native'
 import { Fonts } from '../utils/Fonts'
 import Icon from 'react-native-vector-icons/EvilIcons'
+import Drawer from './Drawer'
 
 export default class Card extends Component {
     constructor (props) {
@@ -42,7 +43,7 @@ export default class Card extends Component {
         optionsClone[parseInt(optionsClone.map( (item, idx) => item.name === element ? idx : null).join(''))] = { name: 'close-o', color: '#FF5E57' }
 
         this.setState({
-            lowerCardHeight: 100,
+            lowerCardHeight: 160,
             selection: element,
             options: optionsClone
         })
@@ -52,7 +53,10 @@ export default class Card extends Component {
         return (
             <View style={styles.card}>
                 <View style={styles.upperCard}>
-                    <Image style={styles.profileImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                    <View style={styles.profileInner}>
+                        <Image style={styles.profileImage} source={require('../../assets/images/p1.jpg')} alt="profile image" />
+                        <Text style={styles.profileName}>Joe</Text>
+                    </View>
                     <View style={styles.upperCardText}>
                         <Text style={styles.cardTitle}>Dinner at Torchy's</Text>
                         <View style={styles.detailRow}>
@@ -81,8 +85,8 @@ export default class Card extends Component {
                     })}
                 </View>
                 <Animated.View style={{ height: this.state.lowerCardHeight }}>
-                    <View style={styles.expandedLowerCard}>
-                        <Text>Hello</Text>
+                    <View style={styles.expandedLowerCard} selection={this.props.selection}>
+                        <Drawer selection={this.state.selection} />
                     </View>
                 </Animated.View>
                 <TouchableHighlight onPress={() => this.onPressExpand('lower')}>
@@ -114,11 +118,22 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center'
     },
+    profileInner: {
+        textAlign: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
     profileImage: {
       width: 60,
       height: 60,
-      borderRadius: 30
+      borderRadius: 30,
     },
+    profileName: {
+        marginTop: 10,
+        color: '#4BCFFA',
+        fontSize: 12,
+        fontFamily: Fonts.WorkSansRegular
+      },
     upperCardText: {
       marginLeft: 15,
     },
@@ -147,14 +162,14 @@ const styles = StyleSheet.create({
     otherIcon: {
       padding: 4,
     },
-    expandedLowerCard: {
-        backgroundColor: '#485460',
-        padding: 6,
-        paddingLeft: 15,
-        width: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
+    // expandedLowerCard: {
+    //     backgroundColor: '#485460',
+    //     padding: 6,
+    //     paddingLeft: 15,
+    //     width: '100%',
+    //     flexDirection: 'row',
+    //     alignItems: 'center',
+    // },
     lowerCard: {
       backgroundColor: '#485460',
       padding: 6,
@@ -180,6 +195,6 @@ const styles = StyleSheet.create({
       fontFamily: Fonts.WorkSansBold,
       marginLeft: 'auto',
     }
-  })  
+})  
 
 AppRegistry.registerComponent('app', () => Card)
