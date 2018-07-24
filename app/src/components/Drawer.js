@@ -27,13 +27,15 @@ export default class Drawer extends Component {
         }
     }
 
-    postChat(newPost) {
-        let post = {
-            image: '../../assets/images/p1.jpg',
-            name: 'Joe',
-            date: '1d',
-            message: `Hell y'all! This looks great! Yeehaw! Let's do this again sometime!`
-        }
+    postChat = newPost => {
+
+        let messagesClone = this.state.messages
+
+        messagesClone.push(newPost)
+
+        this.setState({
+            messages: messagesClone
+        })
     }
 
     makeDrawer() {
@@ -179,6 +181,7 @@ const styles = StyleSheet.create({
     },
     chatMessageWrapper: {
         flexDirection: 'row',
+        alignItems: 'flex-start',
         flexWrap: 'wrap',
         width: 0,
         flexGrow: 1

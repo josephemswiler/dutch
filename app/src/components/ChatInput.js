@@ -11,17 +11,32 @@ export default class ChatInput extends Component {
     }
   }
 
+  createPost() {
+    if(this.state.text.trim() === '')
+        return
+
+    let post = {
+        image: require('../../assets/images/p1.jpg'),
+        name: 'Joe',
+        date: '1d',
+        message: this.state.text.trim()
+    }
+
+    this.props.postChat(post)
+  }
+
   render() {
     return (
       <View style={styles.inputView}>
         <TextInput
-          style={styles.inputText}
-          placeholder="Say something..."
-          onChangeText={(text) => this.setState({text})}
+            clearButtonMode="always"
+            style={styles.inputText}
+            placeholder="Say something..."
+            onChangeText={(text) => this.setState({text})}
         />
         <View style={styles.postButtonWrapper}>
             <Button
-                onPress={this.props.postChat}
+                onPress={() => this.createPost()}
                 title="POST"
                 color="#4BCFFA"
                 accessibilityLabel="Post message"
@@ -38,16 +53,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         fontFamily: Fonts.WorkSansRegular,
         borderRadius: 30,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        padding: 4,
+        paddingLeft: 15
     },
     inputText: {
         padding: 4,
-        paddingLeft: 15
+        paddingLeft: 9,
+        width: 0,
+        flexGrow: 1,
     },
     postButtonWrapper: {
         marginLeft: 'auto',
         textAlign: 'right',
-        paddingRight: 11
+        paddingRight: 9
     }
 })
 
