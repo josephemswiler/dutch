@@ -36,6 +36,10 @@ export default class Drawer extends Component {
         this.setState({
             messages: messagesClone
         })
+        
+        setTimeout(() => {
+            this.refs.scrollView.scrollToEnd()
+          }, 50)
     }
 
     makeDrawer() {
@@ -53,7 +57,7 @@ export default class Drawer extends Component {
             
             return (
                 <View style={styles.topChatWrapper}>
-                    <ScrollView>
+                    <ScrollView ref="scrollView">
                         <View style={styles.chatView}>
                         {this.state.messages.map( (item, idx) => {
                             return (

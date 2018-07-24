@@ -6,6 +6,8 @@ export default class ChatInput extends Component {
   constructor (props) {
     super(props)
 
+    this.textInput = React.createRef()
+    this.createPost = this.createPost.bind(this)
     this.state = {
         text: ''
     }
@@ -23,12 +25,14 @@ export default class ChatInput extends Component {
     }
 
     this.props.postChat(post)
+    this.textInput.current.value = ''
   }
 
   render() {
     return (
       <View style={styles.inputView}>
         <TextInput
+            ref={this.textInput}
             clearButtonMode="always"
             style={styles.inputText}
             placeholder="Say something..."
