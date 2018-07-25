@@ -25,7 +25,6 @@ export default class ChatInput extends Component {
     }
 
     this.props.postChat(post)
-    this.textInput.current.value = ''
   }
 
   render() {

@@ -3,6 +3,7 @@ import { AppRegistry, StyleSheet, Text, View, Image, TouchableHighlight, Animate
 import { Fonts } from '../utils/Fonts'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import ChatInput from './ChatInput'
+import RequestCard from './RequestCard'
 
 export default class Drawer extends Component {
     constructor (props) {
@@ -11,6 +12,18 @@ export default class Drawer extends Component {
         this.state={
           selection: this.props.selection,
           messages: [
+            {
+                image: require('../../assets/images/p1.jpg'),
+                name: 'Joe',
+                date: '1d',
+                message: `Hell y'all! This looks great! Yeehaw! Let's do this again sometime!`
+            },
+            {
+                image: require('../../assets/images/p1.jpg'),
+                name: 'Joe',
+                date: '8h',
+                message: `yesssssyesssssyesssssyesssssyesssssyesssssyesssssyesssss`
+            },
             {
                 image: require('../../assets/images/p1.jpg'),
                 name: 'Joe',
@@ -43,7 +56,6 @@ export default class Drawer extends Component {
     }
 
     makeDrawer() {
-
         switch (this.props.selection) {
             case 'paperclip':
             return (
@@ -54,7 +66,9 @@ export default class Drawer extends Component {
                 </ScrollView>
             )
             case 'comment':
-            
+            setTimeout(() => {
+                this.refs.scrollView.scrollToEnd()
+              }, 100)
             return (
                 <View style={styles.topChatWrapper}>
                     <ScrollView ref="scrollView">
@@ -142,7 +156,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     receipt: {
-        width: '100%'
+        width: '100%',
+        borderRadius: 5
     },
     topChatWrapper: {
         paddingTop: 10,
