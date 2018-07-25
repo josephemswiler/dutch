@@ -9,6 +9,8 @@ export default class App extends Component {
     super(props)
 
     this.state = {
+      listColor: '#FF5E57',
+      addColor: '#000000',
       cards: [
         {
           status: 'Please pay',
@@ -45,7 +47,7 @@ export default class App extends Component {
       <LinearGradient style={styles.container} colors={['#F15F79', '#B24592']}>
         <ScrollView>
           <View style={styles.statusGutter} />
-          <TopBar />
+          <TopBar listColor={this.state.listColor} addColor={this.state.addColor}/>
           <View style={styles.content}>
             {this.state.cards.map((item, idx) => {
                 return (
