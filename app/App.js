@@ -116,7 +116,7 @@ class HomeScreen extends React.Component {
     
       render() {
         return (
-          <LinearGradient style={styles.container} colors={['#F15F79', '#B24592']}>
+          <LinearGradient style={styles.container} colors={['#ffffff', '#fab1a0']}>
             <ScrollView>
               <View style={styles.statusGutter} />
               {/* <TopBar listColor={this.state.listColor} addColor={this.state.addColor}/> */}
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   statusGutter: {
     height: 22,
-    backgroundColor: 'rgba( 255, 255, 255, 0.5)',
+    backgroundColor: 'transparent',
     width: '100%'
   },
   container: {
