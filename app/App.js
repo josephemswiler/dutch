@@ -9,21 +9,51 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-
+      listColor: '#FF5E57',
+      addColor: '#000000',
+      cards: [
+        {
+          status: 'Please pay',
+          owner: 'Shane',
+          note: `Hey guys! Had a great time at the bday - this is split evenly amongst us and should cover all the food and drinks we devoured. No rush on payment. Great to see y’all!`,
+          amount: 28
+        },
+        {
+          status: 'You paid',
+          owner: 'Shane',
+          note: null,
+          amount: 32
+        },
+        {
+          status: 'You received',
+          owner: 'Joe',
+          note: null,
+          amount: 140
+        },
+        {
+          status: 'You requested',
+          owner: 'Joe',
+          note: null,
+          amount: 210
+        }
+      ]
     }
   }
+
+
 
   render() {
     return (
       <LinearGradient style={styles.container} colors={['#F15F79', '#B24592']}>
         <ScrollView>
           <View style={styles.statusGutter} />
-          <TopBar />
+          <TopBar listColor={this.state.listColor} addColor={this.state.addColor}/>
           <View style={styles.content}>
-            <Card />   
-            <Card />
-            <Card />
-            <Card />
+            {this.state.cards.map((item, idx) => {
+                return (
+                  <Card key={idx} status={item.status} owner={item.owner} amount={item.amount} note={item.note} />
+                )
+            })}
           </View>
         </ScrollView>
       </LinearGradient>
@@ -39,8 +69,8 @@ const styles = StyleSheet.create({
     padding: 20
   },
   statusGutter: {
-    height: 20,
-    backgroundColor: 'rgba( 255, 255, 255, 1)',
+    height: 22,
+    backgroundColor: 'rgba( 255, 255, 255, 0.5)',
     width: '100%'
   },
   container: {
