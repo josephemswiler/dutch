@@ -3,6 +3,8 @@ import { AppRegistry, StyleSheet, Text, View, Image, TouchableHighlight, Animate
 import { Fonts } from '../utils/Fonts'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Drawer from './Drawer'
+import MemberInput from './MemberInput'
+import MemberList from './MemberList'
 
 
 export default class Card extends Component {
@@ -10,19 +12,39 @@ export default class Card extends Component {
         super(props) 
 
         this.state={
-            status: this.props.status,
-            owner: this.props.owner,
-            amount: this.props.amount,
-            note: this.props.note,
-            lowerCardHeight: 0,
-            selection: null,
-            options: [
-                { name: 'paperclip', color: '#000000' },
-                { name: 'comment', color: '#000000' },
-                { name: 'user', color: '#000000' }
-            ]
+            splitButton: {
+                backgroundColor: '#0BE881',
+                color: '#000000',
+                iconColor: '#ffffff'
+            },
+            allocateButton: {
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                iconColor: '#0BE881'
+            },
+            add: {
+                owner: 'Shane',
+                name: `Dinner at Torchy's`,
+                location: `Torchy's Tacos`,
+                date: `06/28/2018`,
+                note: `Hey guys! Had a great time at the bday - this is split evenly amongst us and should cover all the food and drinks we devoured. No rush on payment. Great to see y’all!`,
+                allocate: false,
+                members: [
+                  'Joe',
+                  'Jen'
+                ],
+                grandTotal: 28,
+                taxTotal: 2,
+                tipTotal: 3,
+                items: {
+                  id: 1,
+                  name: 'Chips',
+                  quantity: 1,
+                  amount: 2.50
+                },
+                image: require('../../assets/images/receipt.png')
+              }
         }
-        this._pt = new Animated.Value(0)
     }
 
     onPressExpand(element) {
@@ -92,6 +114,38 @@ export default class Card extends Component {
         }
     }
 
+    pressSplitAllocate = selection => {
+        const notSelected = {
+            backgroundColor: '#ffffff',
+            color: '#000000',
+            iconColor: '#0BE881'
+        }
+
+        const currentSelection = {
+            backgroundColor: '#0BE881',
+            color: '#000000',
+            iconColor: '#ffffff'
+        }
+
+        let split, allocate
+
+        switch(selection) {
+            case 'split':
+                split = currentSelection
+                allocate = notSelected  
+            break
+            case 'allocate':
+                allocate = currentSelection
+                split = notSelected  
+            break
+        }
+
+        this.setState({
+            splitButton: split,
+            allocateButton: allocate
+        })
+    }
+
     render() {
         return (
             <View style={styles.card}>
@@ -121,24 +175,42 @@ export default class Card extends Component {
                     </View> 
                 </View>
                 <View style={styles.iconRow}>
-                    {this.state.options.map((item, idx) => {
-                        return (
-                            <Icon key={idx} onPress={() => this.onPressExpand(item.name)} style={styles.otherIcon} name={item.name} size={26} color={item.color} /> 
-                          )
-                    })}
                 </View>
                 <View>
-                    {this.makeNoteCard()}
                 </View>
-                <Animated.View style={{ height: this.state.lowerCardHeight }}>
-                    <View selection={this.props.selection}>
-                        <Drawer selection={this.state.selection} />
+                <View style={styles.noteCard}>
+                    <View style={styles.topButtonRow}>
+                        <View style={styles.buttonRowLeft}>
+                            <TouchableHighlight onPress={() => this.pressSplitAllocate('split')} style={styles.buttonTouchable}>
+                                <View style={styles.payButtonView} backgroundColor={this.state.splitButton.backgroundColor} color={this.state.splitButton.color}>
+                                    <View style={styles.buttonTextWrapper}>
+                                        <Icon name="share-google" size={26} color={this.state.splitButton.iconColor}/>
+                                        <Text style={styles.payButtonText}> Split Evenly</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                        <View style={styles.buttonRowRight}>
+                            <TouchableHighlight onPress={() => this.pressSplitAllocate('allocate')} style={styles.buttonTouchable}>
+                                <View style={styles.disputeButtonView} backgroundColor={this.state.allocateButton.backgroundColor} color={this.state.allocateButton.color}>
+                                    <View style={styles.buttonTextWrapper}>
+                                        <Icon name="user" size={26} color={this.state.allocateButton.iconColor} />
+                                        <Text style={styles.payButtonText}> Allocate</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
                     </View>
-                </Animated.View>
+                    <View>
+                        <MemberList />
+                    </View>
+                    <View>
+                        <MemberInput />
+                    </View>
+                </View>
                 <TouchableHighlight onPress={() => this.onPressExpand('lower')}>
                     <View style={styles.lowerCard}>
-                        <Text style={styles.cardFooterLeft}>{this.state.status}</Text>
-                        <Text style={styles.cardFooterRight}>$ {parseFloat(Math.round(this.state.amount * 100) / 100).toFixed(2)}</Text>
+                        <Text style={styles.cardFooterCenter}>Next</Text>
                     </View>
                 </TouchableHighlight>
             </View>
@@ -235,9 +307,8 @@ const styles = StyleSheet.create({
     },
     payButtonView: {
         height: 30,
-        width: 130,
+        width: 140,
         borderRadius: 15,
-        backgroundColor: '#ffffff',
         marginRight: 'auto',
         alignItems: 'center',
         justifyContent: 'center',
@@ -252,13 +323,12 @@ const styles = StyleSheet.create({
         marginTop: 2,
         color: '#000000',
         fontSize: 14,
-        fontFamily: Fonts.WorkSansRegular,
+        fontFamily: Fonts.WorkSansRegular
     },
     disputeButtonView: {
         height: 30,
-        width: 130,
+        width: 140,
         borderRadius: 15,
-        backgroundColor: '#ffffff',
         marginLeft: 'auto',
         alignItems: 'center',
         justifyContent: 'center',
@@ -287,14 +357,15 @@ const styles = StyleSheet.create({
       fontSize: 12,
       fontFamily: Fonts.WorkSansRegular,
     },
-    cardFooterRight: {
+    cardFooterCenter: {
       color: '#0BE881',
-      textAlign: 'right',
+      textAlign: 'center',
       paddingRight: 9,
       fontSize: 20,
       fontFamily: Fonts.WorkSansBold,
       marginLeft: 'auto',
+      marginRight: 'auto'
     }
 })  
 
-AppRegistry.registerComponent('app', () => Card)
+AppRegistry.registerComponent('app', () => AddCard)
