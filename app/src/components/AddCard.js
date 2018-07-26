@@ -10,6 +10,16 @@ export default class Card extends Component {
         super(props) 
 
         this.state={
+            splitButton: {
+                backgroundColor: '#0BE881',
+                color: '#000000',
+                iconColor: '#ffffff'
+            },
+            allocateButton: {
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                iconColor: '#0BE881'
+            },
             add: {
                 owner: 'Shane',
                 name: `Dinner at Torchy's`,
@@ -35,12 +45,103 @@ export default class Card extends Component {
         }
     }
 
+    onPressExpand(element) {
+        let optionsClone = [
+            { name: 'paperclip', color: '#000000', height: 400 },
+            { name: 'comment', color: '#000000', height: 200 },
+            { name: 'user', color: '#000000', height: 160 }
+        ]
+
+        if (element === 'close-o' || ( element === 'lower' && this.state.selection )) {
+            this.setState({
+                lowerCardHeight: 0,
+                selection: null,
+                options: optionsClone
+            })
+            return
+        }
+
+        if (element === 'lower') {
+            element = 'user'
+        }
+
+        let targetIdx = parseInt(optionsClone.map( (item, idx) => item.name === element ? idx : null).join(''))
+        
+        optionsClone[targetIdx] = { name: 'close-o', color: '#FF5E57', height: optionsClone[targetIdx].height }
+
+        this.setState({
+            lowerCardHeight: optionsClone[targetIdx].height,
+            selection: element,
+            options: optionsClone
+        })
+    }
+
     payButtonPress = () => {
         Alert.alert('pay')
     }
 
-    onPressNext = () => {
+    makeNoteCard() {
+        if (this.state.note) {
+            return (
+                <View style={styles.noteCard}>
+                    <View style={styles.topButtonRow}>
+                        <View style={styles.buttonRowLeft}>
+                            <TouchableHighlight onPress={this.payButtonPress} style={styles.buttonTouchable}>
+                                <View style={styles.payButtonView}>
+                                    <View style={styles.buttonTextWrapper}>
+                                        <Icon name="check" size={26} color="#0BE881" />
+                                        <Text style={styles.payButtonText}> Pay Now</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                        <View style={styles.buttonRowRight}>
+                            <TouchableHighlight onPress={this.payButtonPress} style={styles.buttonTouchable}>
+                                <View style={styles.disputeButtonView}>
+                                    <View style={styles.buttonTextWrapper}>
+                                        <Icon name="close-o" size={26} color="#FF5E57" />
+                                        <Text style={styles.payButtonText}> Dispute</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                    <Text style={styles.noteText}>{this.state.note}</Text>
+                </View>
+            )
+        }
+    }
 
+    pressSplitAllocate = selection => {
+        const notSelected = {
+            backgroundColor: '#ffffff',
+            color: '#000000',
+            iconColor: '#0BE881'
+        }
+
+        const currentSelection = {
+            backgroundColor: '#0BE881',
+            color: '#000000',
+            iconColor: '#ffffff'
+        }
+
+        let split, allocate
+
+        switch(selection) {
+            case 'split':
+                split = currentSelection
+                allocate = notSelected  
+            break
+            case 'allocate':
+                allocate = currentSelection
+                split = notSelected  
+            break
+        }
+
+        this.setState({
+            splitButton: split,
+            allocateButton: allocate
+        })
     }
 
     render() {
@@ -71,16 +172,39 @@ export default class Card extends Component {
                         </View>
                     </View> 
                 </View>
-                <Animated.View style={styles.lowerCard}>
-                    <View>
-                        
-                    </View>
-                    <TouchableHighlight style={styles.nextButtonHighlight} onPress={() => this.onPressNext()}>
-                        <View style={styles.nextButtonTextWrapper}>
-                            <Text style={styles.nextButtonText}>Next</Text>
+                <View style={styles.iconRow}>
+                </View>
+                <View>
+                </View>
+                <View style={styles.noteCard}>
+                    <View style={styles.topButtonRow}>
+                        <View style={styles.buttonRowLeft}>
+                            <TouchableHighlight onPress={() => this.pressSplitAllocate('split')} style={styles.buttonTouchable}>
+                                <View style={styles.payButtonView} backgroundColor={this.state.splitButton.backgroundColor} color={this.state.splitButton.color}>
+                                    <View style={styles.buttonTextWrapper}>
+                                        <Icon name="share-google" size={26} color={this.state.splitButton.iconColor}/>
+                                        <Text style={styles.payButtonText}> Split Evenly</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
                         </View>
-                    </TouchableHighlight>
-                </Animated.View>
+                        <View style={styles.buttonRowRight}>
+                            <TouchableHighlight onPress={() => this.pressSplitAllocate('allocate')} style={styles.buttonTouchable}>
+                                <View style={styles.disputeButtonView} backgroundColor={this.state.allocateButton.backgroundColor} color={this.state.allocateButton.color}>
+                                    <View style={styles.buttonTextWrapper}>
+                                        <Icon name="user" size={26} color={this.state.allocateButton.iconColor} />
+                                        <Text style={styles.payButtonText}> Allocate</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </View>
+                <TouchableHighlight onPress={() => this.onPressExpand('lower')}>
+                    <View style={styles.lowerCard}>
+                        <Text style={styles.cardFooterCenter}>Next</Text>
+                    </View>
+                </TouchableHighlight>
             </View>
         )
     }
@@ -103,21 +227,6 @@ const styles = StyleSheet.create({
       paddingBottom: 0,
       flexDirection: 'row',
       alignItems: 'center'
-    },
-    nextButtonHighlight: {
-        borderRadius: 30
-    },
-    nextButtonTextWrapper: {
-        width: '100%', 
-        backgroundColor: '#ffffff',
-        fontFamily: Fonts.WorkSansRegular,
-        borderRadius: 30,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        padding: 8
-    },
-    nextButtonText: {
-        fontFamily: Fonts.WorkSansRegular,
     },
     profileInner: {
         textAlign: 'center',
@@ -190,9 +299,8 @@ const styles = StyleSheet.create({
     },
     payButtonView: {
         height: 30,
-        width: 130,
+        width: 140,
         borderRadius: 15,
-        backgroundColor: '#ffffff',
         marginRight: 'auto',
         alignItems: 'center',
         justifyContent: 'center',
@@ -211,9 +319,8 @@ const styles = StyleSheet.create({
     },
     disputeButtonView: {
         height: 30,
-        width: 130,
+        width: 140,
         borderRadius: 15,
-        backgroundColor: '#ffffff',
         marginLeft: 'auto',
         alignItems: 'center',
         justifyContent: 'center',
@@ -235,7 +342,22 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center'
+    },
+    cardFooterLeft: {
+      color: '#ffffff',
+      paddingLeft: 9,
+      fontSize: 12,
+      fontFamily: Fonts.WorkSansRegular,
+    },
+    cardFooterCenter: {
+      color: '#0BE881',
+      textAlign: 'center',
+      paddingRight: 9,
+      fontSize: 20,
+      fontFamily: Fonts.WorkSansBold,
+      marginLeft: 'auto',
+      marginRight: 'auto'
     }
 })  
 
-AppRegistry.registerComponent('app', () => Card)
+AppRegistry.registerComponent('app', () => AddCard)
