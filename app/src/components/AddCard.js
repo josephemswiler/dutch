@@ -3,6 +3,8 @@ import { AppRegistry, StyleSheet, Text, View, Image, TouchableHighlight, Animate
 import { Fonts } from '../utils/Fonts'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Drawer from './Drawer'
+import MemberInput from './MemberInput'
+import MemberList from './MemberList'
 
 
 export default class Card extends Component {
@@ -199,6 +201,12 @@ export default class Card extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
+                    <View>
+                        <MemberList />
+                    </View>
+                    <View>
+                        <MemberInput />
+                    </View>
                 </View>
                 <TouchableHighlight onPress={() => this.onPressExpand('lower')}>
                     <View style={styles.lowerCard}>
@@ -315,7 +323,7 @@ const styles = StyleSheet.create({
         marginTop: 2,
         color: '#000000',
         fontSize: 14,
-        fontFamily: Fonts.WorkSansRegular,
+        fontFamily: Fonts.WorkSansRegular
     },
     disputeButtonView: {
         height: 30,
